@@ -41,11 +41,18 @@
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <!-- Spinner End -->
 
-        @yield('main')
-        </main>
+        <div class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div>
+                <h1>welcome</h1>
+                <div class="d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="{{url('/login')}}">Login</a></div>
+                <div class="d-flex align-items-center justify-content-center mt-3"><a class="text-light" href="{{url('/')}}">test d'application</a></div>
+                <div class="d-flex align-items-center justify-content-center mt-3"><a class="text-light" href="{{url('/register')}}">cree un compte</a></div>
 
+            </div>
+        </div>
+
+        
     </div>
 
     <!-- JavaScript Libraries -->

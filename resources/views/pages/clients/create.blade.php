@@ -9,7 +9,8 @@
         </div>
         <div class="col-sm-12 col-xl-8">
             <div class="bg-secondary rounded h-100 p-4">
-                <form>
+                <form action="{{ url('/client') }}" method="POST">
+                    @csrf
                     <div class="row mb-3">
                         <label for="cin" class="col-sm-2 col-form-label">Cin</label>
                         <div class="col-sm-10">
@@ -37,8 +38,13 @@
                     <div class="row mb-3">
                         <label for="Phone" class="col-sm-2 col-form-label">Phone</label>
                         <div class="col-sm-10">
-                            <input type="email" name="Phone" class="form-control" id="Phone">
+                            <input type="text" name="phone" class="form-control" id="Phone">
                         </div>
+                    </div>
+                    <div>
+                        <input type="text" name="type" class="form-control" value="0" hidden>
+                        <input type="text" name="delete" class="form-control" value= "0" hidden>
+                        <input type="text" name="user_id" class="form-control" value= {{ Auth::user()->id }} hidden>
                     </div>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                     <a class="btn btn-sm btn-success" href="{{url('/clients')}}">Annuler</a>

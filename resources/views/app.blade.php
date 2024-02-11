@@ -49,6 +49,8 @@
             justify-content: flex-start;
         }
     </style>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body >
@@ -70,7 +72,7 @@
                     <a href="{{url('/home')}}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Accuel</a>
                     <a href="{{url('/reservations')}}" class="nav-item nav-link"><i class="fa fa-bookmark me-2"></i>Reservations</a>
                     <a href="{{url('/clients')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Clients</a>
-                    <a href="{{url('/cars')}}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Voitures</a>
+                    <a href="{{url('/voitures')}}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Voitures</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Voitures Options</a>
                         <div class="dropdown-menu bg-transparent border-0 ps-5">
@@ -107,22 +109,60 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-user me-2"></i>
-                            <span class="d-none d-lg-inline-flex">Admin</span>
+                            <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="{{url('/')}}" class="dropdown-item">Log Out</a>
+                            
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link style="color: rgb(70, 70, 70)" :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
                         </div>
                     </div>
                 </div>
             </nav>
+            <div >
+                @if ($message = Session::get('success'))
+                    <script>
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "{{$message}}",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    </script>
+                @elseif($message = Session::get('warning'))
+                    <script>
+                        Swal.fire({
+                            position: "center",
+                            icon: "info",
+                            title: "{{$message}}",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    </script>
+                @elseif($message = Session::get('danger'))
+                    <script>
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "{{$message}}",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    </script>
+                @endif
+            </div>
 
             @yield('main')
             </main>
 
         </div>
-
-        <!-- Back to Top -->
-        {{-- <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a> --}}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

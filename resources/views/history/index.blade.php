@@ -52,7 +52,7 @@
                 <a href="{{url('/history/controles')}}">
                     <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         {{-- <i class="fa fa-chart-pie fa-3x text-primary"></i> --}}
-                        <p class="mb-2">Controles-T</p>
+                        <p class="mb-2">Controles</p>
                         <b class="mb-0">7</b>
                     </div>
                 </a>

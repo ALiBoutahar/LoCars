@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\clientController;
+use App\Http\Controllers\voitureController;
+use App\Http\Controllers\reservationController;
+use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,120 +18,100 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('login.signin');
+    return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    // **************************************************
+    Route::controller(ClientController::class)->group(function () {
+        Route::get('/clients', 'index');
+        Route::get('/client/create', 'create');
+        Route::get('/client/{id}', 'show');
+        Route::get('/client/{id}/edit', 'edit');
+        Route::post('/client', 'store');
+        Route::patch('/client/{id}', 'update');
+        // Route::delete('/client/{id}', 'destroy');
+        Route::patch('/client/{id}/delete', 'delete');
+    });
+   
+    // **************************************************
+    Route::controller(voitureController::class)->group(function () {
+        Route::get('/voitures', 'index');
+        Route::get('/voiture/create', 'create');
+        Route::get('/voiture/{id}', 'show');
+        Route::get('/voiture/{id}/edit', 'edit');
+        Route::post('/voiture', 'store');
+        Route::patch('/voiture/{id}', 'update');
+        // Route::delete('/voiture/{id}', 'destroy');
+        Route::patch('/voiture/{id}/delete', 'delete');
+    });
+   
+    // **************************************************
+    Route::controller(ReservationController::class)->group(function () {
+        Route::get('/reservations', 'index');
+        Route::get('/reservation/create', 'create');
+        Route::get('/reservation/{id}', 'show');
+        Route::get('/reservation/{id}/edit', 'edit');
+        Route::post('/reservation', 'store');
+        Route::patch('/reservation/{id}', 'update');
+        // Route::delete('/reservation/{id}', 'destroy');
+        Route::patch('/reservation/{id}/delete', 'delete');
+    });
+   
+    // **************************************************
+    Route::controller(AccidentController::class)->group(function () {
+        Route::get('/accidents', 'index');
+        Route::get('/accident/create', 'create');
+        Route::get('/accident/{id}', 'show');
+        Route::get('/accident/{id}/edit', 'edit');
+        Route::post('/accident', 'store');
+        Route::patch('/accident/{id}', 'update');
+        // Route::delete('/accident/{id}', 'destroy');
+        Route::patch('/accident/{id}/delete', 'delete');
+    });
+   
+    // **************************************************
+    Route::controller(AssuranceController::class)->group(function () {
+        Route::get('/assurances', 'index');
+        Route::get('/assurance/create', 'create');
+        Route::get('/assurance/{id}', 'show');
+        Route::get('/assurance/{id}/edit', 'edit');
+        Route::post('/assurance', 'store');
+        Route::patch('/assurance/{id}', 'update');
+        // Route::delete('/assurance/{id}', 'destroy');
+        Route::patch('/assurance/{id}/delete', 'delete');
+    });
+   
+    // **************************************************
+    Route::controller(ControleController::class)->group(function () {
+        Route::get('/controles', 'index');
+        Route::get('/controle/create', 'create');
+        Route::get('/controle/{id}', 'show');
+        Route::get('/controle/{id}/edit', 'edit');
+        Route::post('/controle', 'store');
+        Route::patch('/controle/{id}', 'update');
+        // Route::delete('/controle/{id}', 'destroy');
+        Route::patch('/controle/{id}/delete', 'delete');
+    });
+   
+    // **************************************************
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/home', 'index');
+        Route::get('/home/create', 'create');
+        Route::get('/home/{id}', 'show');
+        Route::get('/home/{id}/edit', 'edit');
+        Route::post('/home', 'store');
+        Route::patch('/home/{id}', 'update');
+        // Route::delete('/home/{id}', 'destroy');
+        Route::patch('/home/{id}/delete', 'delete');
+    });
+   
 });
 
-Route::get('/charts', function () {
-    return view('home.charts');
-});
-
-Route::get('/signup', function () {
-    return view('login.signup');
-});
-
-// **************************************************
-Route::get('/ajouter_client', function () {
-    return view('pages.clients.create');
-});
-Route::get('/show_client', function () {
-    return view('pages.clients.show');
-});
-Route::get('/edit_client', function () {
-    return view('pages.clients.edit');
-});
-Route::get('/clients', function () {
-    return view('pages.clients.index');
-});
-// **************************************************
-Route::get('/ajouter_car', function () {
-    return view('pages.cars.create');
-});
-Route::get('/show_car', function () {
-    return view('pages.cars.show');
-});
-Route::get('/edit_car', function () {
-    return view('pages.cars.edit');
-});
-Route::get('/cars', function () {
-    return view('pages.cars.index');
-});
-// **************************************************
-Route::get('/ajouter_reservation', function () {
-    return view('pages.reservations.create');
-});
-Route::get('/show_reservation', function () {
-    return view('pages.reservations.show');
-});
-Route::get('/edit_reservation', function () {
-    return view('pages.reservations.edit');
-});
-Route::get('/reservations', function () {
-    return view('pages.reservations.index');
-});
-// **************************************************
-Route::get('/ajouter_assurance', function () {
-    return view('pages.assurances.create');
-});
-Route::get('/show_assurance', function () {
-    return view('pages.assurances.show');
-});
-Route::get('/edit_assurance', function () {
-    return view('pages.assurances.edit');
-});
-Route::get('/assurances', function () {
-    return view('pages.assurances.index');
-});
-// **************************************************
-Route::get('/ajouter_controle', function () {
-    return view('pages.controles.create');
-});
-Route::get('/show_controle', function () {
-    return view('pages.controles.show');
-});
-Route::get('/edit_controle', function () {
-    return view('pages.controles.edit');
-});
-Route::get('/controles', function () {
-    return view('pages.controles.index');
-});
-// **************************************************
-Route::get('/ajouter_accident', function () {
-    return view('pages.accidents.create');
-});
-Route::get('/show_accident', function () {
-    return view('pages.accidents.show');
-});
-Route::get('/edit_accident', function () {
-    return view('pages.accidents.edit');
-});
-Route::get('/accidents', function () {
-    return view('pages.accidents.index');
-});
-// **************************************************
-Route::get('/history', function () {
-    return view('history.index');
-});
-Route::get('/history/clients', function () {
-    return view('history.clients');
-});
-Route::get('/history/cars', function () {
-    return view('history.cars');
-});
-Route::get('/history/reservations', function () {
-    return view('history.reservations');
-});
-Route::get('/history/accidents', function () {
-    return view('history.accidents');
-});
-Route::get('/history/controles', function () {
-    return view('history.controles');
-});
-Route::get('/history/assurances', function () {
-    return view('history.assurances');
-});
+require __DIR__.'/auth.php';
