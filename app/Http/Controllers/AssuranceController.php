@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\voiture;
 use App\Models\assurance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,8 @@ class AssuranceController extends Controller
 
     public function create()
     {
-        return view("pages.assurances.create");
+        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        return view("pages.assurances.create",["voitures"=>$voitures]);
     }
 // ********************************************************************************
 
@@ -35,7 +36,8 @@ class AssuranceController extends Controller
 
     public function edit($id)
     {
-        return view("pages.assurances.edit",["assurance"=>assurance::findOrFail($id)]);
+        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        return view("pages.assurances.edit",["assurance"=>assurance::findOrFail($id),"voitures"=>$voitures]);
     }
 
     public function update(Request $request,$id)

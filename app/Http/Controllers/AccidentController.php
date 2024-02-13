@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\voiture;
+use App\Models\client;
 use App\Models\accident;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,9 @@ class AccidentController extends Controller
 
     public function create()
     {
-        return view("pages.accidents.create");
+        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        $clients = client::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        return view("pages.accidents.create",["voitures"=>$voitures, "clients"=>$clients]);
     }
 // ********************************************************************************
 
@@ -35,7 +38,9 @@ class AccidentController extends Controller
 
     public function edit($id)
     {
-        return view("pages.accidents.edit",["accident"=>accident::findOrFail($id)]);
+        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        $clients = client::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        return view("pages.accidents.edit",["accident"=>accident::findOrFail($id),"voitures"=>$voitures, "clients"=>$clients]);
     }
 
     public function update(Request $request,$id)

@@ -81,13 +81,13 @@
                             <a href="{{url('/accidents')}}" class="dropdown-item">Accidents</a>
                         </div>
                     </div>
-                    <a href="{{url('/charts')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Statistiques</a>
+                    <a href="{{url('/statistiques')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Statistiques</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-history me-2"></i>Historiques</a>
                         <div class="dropdown-menu bg-transparent border-0 ps-5">
                             <a href="{{url('/history')}}" class="dropdown-item">History</a>
                             <a href="{{url('/history/clients')}}" class="dropdown-item">Clients</a>
-                            <a href="{{url('/history/cars')}}" class="dropdown-item">Voitures</a>
+                            <a href="{{url('/history/voitures')}}" class="dropdown-item">Voitures</a>
                             <a href="{{url('/history/reservations')}}" class="dropdown-item">Reservations</a>
                             <a href="{{url('/history/controles')}}" class="dropdown-item">Controles-Technique</a>
                             <a href="{{url('/history/assurances')}}" class="dropdown-item">Assurances</a>

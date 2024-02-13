@@ -4,13 +4,13 @@
 <div class="container-fluid d-none d-lg-block pt-4 px-4">
     <div class="row g-4 d-flex justify-content-center">
         <div class="col-sm-12 col-xl-12 d-flex justify-content-between">
-            <h5 class="">Modifier Client Nº <{{ $client->cin }}/h5>
+            <h5>Modifier Client Nº {{ $client->cin }}</h5>
             <a class="btn btn-sm btn-primary" href="{{url('/clients')}}">x</a>
         </div>
         <div class="col-sm-12 col-xl-8">
             <div class="bg-secondary rounded h-100 p-4">
                 <form action="{{ url('client/'. $client->id) }}" method="POST">
-                    @method('patch');
+                    @method('patch')
                     @csrf
                     <div class="row mb-3">
                         <label for="cin" class="col-sm-2 col-form-label">Cin</label>

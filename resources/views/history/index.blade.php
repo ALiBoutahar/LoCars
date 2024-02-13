@@ -13,7 +13,7 @@
                 </a>
             </div>
             <div class="col-sm-6 col-xl-2">
-                <a href="{{url('/history/cars')}}">
+                <a href="{{url('/history/voitures')}}">
                     <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         {{-- <i class="fa fa-chart-pie fa-3x text-primary"></i> --}}
                         <p class="mb-2">Voitures</p>

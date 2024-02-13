@@ -3,7 +3,7 @@
 
     <div class="container-fluid d-none d-lg-block pt-2 px-4">
         <div class="d-flex justify-content-between">
-            <div><h3>voitures</h3></div>
+            <div><h3>Voitures</h3></div>
             <div><a href="{{ url('voiture/create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a></div>
         </div>
         @if (count($voitures)==0)

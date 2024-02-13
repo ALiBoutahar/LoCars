@@ -10,7 +10,6 @@ class controle extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'client_id',
         'voiture_id',
         'nom',
         'date_d',

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\voiture;
 use App\Models\controle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\Auth;
 class ControleController extends Controller
 {
     public function index()
-    {
+    { 
         return view("pages.controles.index",["controles"=>controle::where('delete', 0)->get()]);
     } 
 // ********************************************************************************
 
     public function create()
     {
-        return view("pages.controles.create");
+        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        return view("pages.controles.create",["voitures"=>$voitures]);
     }
 // ********************************************************************************
 
@@ -35,7 +36,8 @@ class ControleController extends Controller
 
     public function edit($id)
     {
-        return view("pages.controles.edit",["controle"=>controle::findOrFail($id)]);
+        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        return view("pages.controles.edit",["controle"=>controle::findOrFail($id),"voitures"=>$voitures]);
     }
 
     public function update(Request $request,$id)

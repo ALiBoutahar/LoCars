@@ -9,10 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    public function charts()
+    {
+        return view("home.charts");
+    } 
+
     public function index()
     {
         return view("home.index");
     } 
+
+
     public function searchVoitures(Request $request)
     {
         if ($request->ajax()) {
