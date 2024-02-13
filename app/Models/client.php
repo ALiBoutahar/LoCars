@@ -15,6 +15,7 @@ class client extends Model
         'prenom',
         'phone',
         'email',
+        'status',
         'type',
         'delete',
     ];

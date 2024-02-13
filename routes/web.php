@@ -103,6 +103,7 @@ Route::middleware('auth')->group(function () {
     // **************************************************
     Route::controller(HomeController::class)->group(function () {
         Route::get('/home', 'index');
+        Route::post('/searsh-voitures', 'searchVoitures');
         Route::get('/home/create', 'create');
         Route::get('/home/{id}', 'show');
         Route::get('/home/{id}/edit', 'edit');

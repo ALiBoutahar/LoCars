@@ -4,7 +4,7 @@
 <div class="container-fluid d-none d-lg-block pt-4 px-4">
     <div class="row g-4 d-flex justify-content-center">
         <div class="col-sm-12 col-xl-12 d-flex justify-content-between">
-            <h5 class="">Modifier Client Nº 3</h5>
+            <h5 class="">Modifier Client Nº <{{ $client->cin }}/h5>
             <a class="btn btn-sm btn-primary" href="{{url('/clients')}}">x</a>
         </div>
         <div class="col-sm-12 col-xl-8">
@@ -40,6 +40,12 @@
                         <label for="Phone" class="col-sm-2 col-form-label">Phone</label>
                         <div class="col-sm-10">
                             <input type="text" name="phone" class="form-control" id="Phone" value="{{ $client->phone }}">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="Phone" class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="status" class="form-control" id="status" value="{{ $client->status }}">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Modifier</button>

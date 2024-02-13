@@ -41,6 +41,12 @@
                             <input type="text" name="phone" class="form-control" id="Phone">
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label for="status" class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="status" class="form-control" id="status">
+                        </div>
+                    </div>
                     <div>
                         <input type="text" name="type" class="form-control" value="0" hidden>
                         <input type="text" name="delete" class="form-control" value= "0" hidden>

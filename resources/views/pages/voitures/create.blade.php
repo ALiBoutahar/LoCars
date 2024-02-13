@@ -9,7 +9,8 @@
         </div>
         <div class="col-sm-12 col-xl-12">
             <div class="bg-secondary rounded h-100 p-4"> 
-                <form class="row">
+                <form class="row" action="{{ url('/voiture') }}" method="POST">
+                    @csrf
                     <div class="col-md-6 row mb-4">
                         <label for="matricule" class="col-sm-2 col-form-label">Matricule</label>
                         <div class="col-sm-10">
@@ -50,9 +51,20 @@
                         <label for="image" class="form-label" style="width: 20%">Image</label>
                         <input class="form-control bg-dark"  style="width: 77%" type="file" name="image" id="image">
                     </div>
+                    <div class="col-md-6 row mb-4">
+                        <label for="status" class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="status" class="form-control" id="status">
+                        </div>
+                    </div>
+                    <div>
+                        <input type="text" name="type" class="form-control" value="0" hidden>
+                        <input type="text" name="delete" class="form-control" value= "0" hidden>
+                        <input type="text" name="user_id" class="form-control" value= {{ Auth::user()->id }} hidden>
+                    </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary">Ajouter</button>
-                        <a class="btn btn-sm btn-success" href="{{url('/cars')}}">Annuler</a>
+                        <a class="btn btn-sm btn-success" href="{{url('/voitures')}}">Annuler</a>
                     </div>
                 </form>
             </div>

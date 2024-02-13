@@ -16,12 +16,12 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('client_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('voiture_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->date('date_d');
-            $table->date('date_f');
-            $table->string('ste');
-            $table->string('agance');
-            $table->string('prix');
-            $table->text('status');
+            $table->date('date_d')->nullable();
+            $table->date('date_f')->nullable();
+            $table->string('ste')->nullable();
+            $table->string('agance')->nullable();
+            $table->string('prix')->nullable();
+            $table->text('status')->nullable();
             $table->string('type');
             $table->string('delete');
             $table->timestamps();

@@ -4,7 +4,7 @@
     <div class="container-fluid d-none d-lg-block pt-2 px-4">
         <div class="d-flex justify-content-between">
             <div><h3>voitures</h3></div>
-            <div><a href="{{ url('client/create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a></div>
+            <div><a href="{{ url('voiture/create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a></div>
         </div>
         @if (count($voitures)==0)
             <div class="alert alert-primary pb-1">
@@ -32,6 +32,7 @@
                                     <td>{{ $a->matricule }}</td>
                                     <td>{{ $a->model }}</td>
                                     <td>{{ $a->km }}</td>
+                                    <td>{{ $a->marque }}</td>
                                     <td>{{ $a->color }}</td>
                                     <td>
                                         <form action="{{ url('voiture/'. $a->id.'/delete') }}" method="POST">

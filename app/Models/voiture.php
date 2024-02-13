@@ -14,9 +14,11 @@ class voiture extends Model
         'matricule',
         'marque',
         'color',
+        'model',
         'km',
         'nbrplace',
         'image',
+        'status',
         'type',
         'delete',
     ];

@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('matricule')->unique();
-            $table->string('marque');
-            $table->string('color');
-            $table->string('km');
-            $table->string('nbrplace');
-            $table->string('image');
+            $table->string('marque')->nullable();
+            $table->string('color')->nullable();
+            $table->string('model')->nullable();
+            $table->string('km')->nullable();
+            $table->string('nbrplace')->nullable();
+            $table->string('image')->nullable();
+            $table->text('status')->nullable();
             $table->string('type');
             $table->string('delete');
             $table->timestamps();
