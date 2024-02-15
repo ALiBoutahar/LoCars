@@ -51,6 +51,9 @@
     </style>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        <!-- Inclure les fichiers CSS et JavaScript de Toastr dans votre fichier de mise en page principal -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 
 <body >
@@ -99,9 +102,6 @@
         </div>
         <div class="content">
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
-                </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
@@ -115,7 +115,7 @@
                             
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <x-dropdown-link style="color: rgb(70, 70, 70)" :href="route('logout')"
+                                <x-dropdown-link style="color: rgb(151, 151, 151)" :href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                     {{ __('Log Out') }}
@@ -126,7 +126,41 @@
                 </div>
             </nav>
             <div >
-                @if ($message = Session::get('success'))
+                <script>
+
+                    $(document).ready(function() {
+                        toastr.options = {
+                            "closeButton": true,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+                    });
+                    // Afficher les messages Toastr
+                    @if(Session::has('success'))
+                        toastr.success("{{ Session::get('success') }}", "Succès");
+                    @endif
+                
+                    @if(Session::has('warning'))
+                        toastr.info("{{ Session::get('warning') }}", "Info");
+                    @endif
+
+                    @if(Session::has('danger'))
+                        toastr.warning("{{ Session::get('danger') }}", "Avertissement");
+                    @endif
+
+                    // @if(Session::has('danger'))
+                    //     toastr.error("{{ Session::get('danger') }}", "Erreur");
+                    // @endif
+                </script>
+                {{-- @if ($message = Session::get('success'))
                     <script>
                         Swal.fire({
                             position: "center",
@@ -156,7 +190,7 @@
                             timer: 2000
                         });
                     </script>
-                @endif
+                @endif --}}
             </div>
 
             @yield('main')
@@ -164,6 +198,7 @@
 
         </div>
     </div>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('lib/chart/chart.min.js')}}"></script>

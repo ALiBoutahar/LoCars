@@ -1,7 +1,7 @@
 @extends('app')
 @section('main')
 
-    <div class="container-fluid d-none d-lg-block pt-4 px-4">
+    {{-- <div class="container-fluid d-none d-lg-block pt-4 px-4">
         <div class="bg-secondary text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between">
                 <h6 class="mb-0">Recherche Voitures Disponible</h6>
@@ -19,7 +19,6 @@
             @include('partials.voiture_exist_table')
         </div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -48,6 +47,6 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 
 @endsection

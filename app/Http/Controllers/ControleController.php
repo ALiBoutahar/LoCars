@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\voiture;
-use App\Models\controle;
+
+use App\Models\Voiture;
+use App\Models\Controle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,56 +11,53 @@ class ControleController extends Controller
 {
     public function index()
     { 
-        return view("pages.controles.index",["controles"=>controle::where('delete', 0)->get()]);
+        $controles = Controle::where('delete', 0)->get();
+        return view("pages.controles.index", ["controles" => $controles]);
     } 
-// ********************************************************************************
 
     public function create()
     {
-        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
-        return view("pages.controles.create",["voitures"=>$voitures]);
+        $voitures = Voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        return view("pages.controles.create", ["voitures" => $voitures]);
     }
-// ********************************************************************************
 
     public function store(Request $request)
     {
-        controle::create($request->all());
-        return redirect()->back()->with('success', 'controle ajouter avec succès');
+        $controleData = $request->all();
+        $controleData['user_id'] = Auth::user()->id;
+
+        Controle::create($controleData);
+        return redirect()->back()->with('success', 'Contrôle ajouté avec succès');
     }
-// ********************************************************************************
 
     public function show($id)
     {
-        return view("pages.controles.show",["controle"=>controle::findOrFail($id)]);
+        $controle = Controle::where('id', $id)->firstOrFail();
+        return view("pages.controles.show", ["controle" => $controle]);
     }
-// ********************************************************************************
 
     public function edit($id)
     {
-        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
-        return view("pages.controles.edit",["controle"=>controle::findOrFail($id),"voitures"=>$voitures]);
+        $controle = Controle::where('id', $id)->firstOrFail();
+        $voitures = Voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        return view("pages.controles.edit", ["controle" => $controle, "voitures" => $voitures]);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $updateData = controle::find($id);
-        $updateData->update($request->all());
-        return redirect()->back()->with('warning', 'controle modifié avec succès');
+        $controle = Controle::where('id', $id)->firstOrFail();
+        $controle->update($request->all());
+        return redirect()->back()->with('warning', 'Contrôle modifié avec succès');
     }
-// ********************************************************************************
-    // public function destroy($id)
-    // {
-    //     $post = controle::find($id);
-    //     $post->delete();
-    //     return redirect("controle")->with('success', 'controle supprimer avec succès');
-    // }
 
     public function delete($id)
     {
-        $controle = controle::find($id);
+        $controle = Controle::where('id', $id)->firstOrFail();
+
         if ($controle) {
             $controle->update(['delete' => Auth::user()->id]);
+            return redirect()->back()->with('danger', 'Contrôle supprimé avec succès');
         }
-        return redirect()->back()->with('danger', 'controle supprimer avec succès');
+        return redirect()->back()->with('error', 'Erreur lors de la suppression du contrôle');
     }
 }

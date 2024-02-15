@@ -3,8 +3,8 @@
 
     <div class="container-fluid d-none d-lg-block pt-2 px-4">
         <div class="d-flex justify-content-between">
-            <div><h3>History / Accidents</h3></div>
-            <div><a href="{{ url('accident/create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a></div>
+            @include('history.nav')
+            <div class="pt-3"><h5>History / Accidents</h5></div>
         </div>
         @if (count($accidents)==0)
             <div class="alert alert-primary pb-1">
@@ -34,7 +34,7 @@
                                         <form class="pe-2" action="{{ url('h_accidents/'. $a->id.'/recovery') }}" method="POST">
                                             @csrf
                                             @method('PATCH')
-                                            <button class="btn btn-sm" style="background-color: @if ($a->delete <> 0) #FFA500; @endif" type="submit" onclick="return confirm('Are You Sure ??')" title="recovery this accident">
+                                            <button class="btn btn-sm" style="background-color: #FFA500;" type="submit" onclick="return confirm('Are You Sure ??')" title="recovery this accident">
                                                 <i class="fa fa-history"></i>
                                             </button>
                                         </form>

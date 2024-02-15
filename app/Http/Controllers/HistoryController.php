@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
-use App\Models\voiture;
-use App\Models\client;
-use App\Models\accident;
-use App\Models\reservation;
-use App\Models\assurance;
-use App\Models\controle;
+use App\Models\Voiture;
+use App\Models\Client;
+use App\Models\Accident;
+use App\Models\Reservation;
+use App\Models\Assurance;
+use App\Models\Controle;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
@@ -20,113 +19,153 @@ class HistoryController extends Controller
         return view("history.index");
     }
 
-
+    // Clients
     public function clients()
     {
-        return view("history.clients", ["clients" => client::where('delete', '<>', 0)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get()]);
+        return view("history.clients", [
+            "clients" => Client::where('delete', '<>', 0)
+                ->where('user_id', Auth::user()->id)
+                ->orderBy('id', 'desc')
+                ->get()
+        ]);
     }
+
     public function recovery_client($id)
     {
-        $objet = client::find($id);
-        $objet->update(['delete' => 0]);        
-        return redirect()->back()->with('success', "Employe Récupère Avec Succès");
+        $client = Client::find($id);
+        $client->update(['delete' => 0]);
+        return redirect()->back()->with('success', "Client récupéré avec succès");
     }
-    public function destroy_client(Request $request, $id)
-    {
-        $updateData = client::find($id);
-        $updateData->delete($request->all());
-        return redirect()->back()->with('success','Employe supprimer avec succès');
-    }
-    // ********************************************************************
 
+    public function destroy_client($id)
+    {
+        $client = Client::find($id);
+        $client->delete();
+        return redirect()->back()->with('success', 'Client supprimé avec succès');
+    }
+
+    // Voitures
     public function voitures()
     {
-        return view("history.voitures", ["voitures" => voiture::where('delete', '<>', 0)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get()]);
+        return view("history.voitures", [
+            "voitures" => Voiture::where('delete', '<>', 0)
+                ->where('user_id', Auth::user()->id)
+                ->orderBy('id', 'desc')
+                ->get()
+        ]);
     }
+
     public function recovery_voiture($id)
     {
-        $objet = voiture::find($id);
-        $objet->update(['delete' => 0]);        
-        return redirect()->back()->with('success', "Employe Récupère Avec Succès");
+        $voiture = Voiture::find($id);
+        $voiture->update(['delete' => 0]);
+        return redirect()->back()->with('success', "Voiture récupérée avec succès");
     }
-    public function destroy_voiture(Request $request, $id)
-    {
-        $updateData = voiture::find($id);
-        $updateData->delete($request->all());
-        return redirect()->back()->with('success','Employe supprimer avec succès');
-    }
-    // ********************************************************************
 
+    public function destroy_voiture($id)
+    {
+        $voiture = Voiture::find($id);
+        $voiture->delete();
+        return redirect()->back()->with('success', 'Voiture supprimée avec succès');
+    }
+
+    // Reservations
     public function reservations()
     {
-        return view("history.reservations", ["reservations" => reservation::where('delete', '<>', 0)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get()]);
+        return view("history.reservations", [
+            "reservations" => Reservation::where('delete', '<>', 0)
+                ->where('user_id', Auth::user()->id)
+                ->orderBy('id', 'desc')
+                ->get()
+        ]);
     }
+
     public function recovery_reservation($id)
     {
-        $objet = reservation::find($id);
-        $objet->update(['delete' => 0]);        
-        return redirect()->back()->with('success', "Employe Récupère Avec Succès");
+        $reservation = Reservation::find($id);
+        $reservation->update(['delete' => 0]);
+        return redirect()->back()->with('success', "Réservation récupérée avec succès");
     }
-    public function destroy_reservation(Request $request, $id)
+
+    public function destroy_reservation($id)
     {
-        $updateData = reservation::find($id);
-        $updateData->delete($request->all());
-        return redirect()->back()->with('success','Employe supprimer avec succès');
+        $reservation = Reservation::find($id);
+        $reservation->delete();
+        return redirect()->back()->with('success', 'Réservation supprimée avec succès');
     }
-    // ********************************************************************
 
-
+    // Accidents
     public function accidents()
     {
-        return view("history.accidents", ["accidents" => accident::where('delete', '<>', 0)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get()]);
+        return view("history.accidents", [
+            "accidents" => Accident::where('delete', '<>', 0)
+                ->where('user_id', Auth::user()->id)
+                ->orderBy('id', 'desc')
+                ->get()
+        ]);
     }
+
     public function recovery_accident($id)
     {
-        $objet = accident::find($id);
-        $objet->update(['delete' => 0]);        
-        return redirect()->back()->with('success', "Employe Récupère Avec Succès");
+        $accident = Accident::find($id);
+        $accident->update(['delete' => 0]);
+        return redirect()->back()->with('success', "Accident récupéré avec succès");
     }
-    public function destroy_accident(Request $request, $id)
-    {
-        $updateData = accident::find($id);
-        $updateData->delete($request->all());
-        return redirect()->back()->with('success','Employe supprimer avec succès');
-    }
-    // ********************************************************************
 
+    public function destroy_accident($id)
+    {
+        $accident = Accident::find($id);
+        $accident->delete();
+        return redirect()->back()->with('success', 'Accident supprimé avec succès');
+    }
+
+    // Assurances
     public function assurances()
     {
-        return view("history.assurances", ["assurances" => assurance::where('delete', '<>', 0)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get()]);
+        return view("history.assurances", [
+            "assurances" => Assurance::where('delete', '<>', 0)
+                ->where('user_id', Auth::user()->id)
+                ->orderBy('id', 'desc')
+                ->get()
+        ]);
     }
+
     public function recovery_assurance($id)
     {
-        $objet = assurance::find($id);
-        $objet->update(['delete' => 0]);        
-        return redirect()->back()->with('success', "Employe Récupère Avec Succès");
+        $assurance = Assurance::find($id);
+        $assurance->update(['delete' => 0]);
+        return redirect()->back()->with('success', "Assurance récupérée avec succès");
     }
-    public function destroy_assurance(Request $request, $id)
-    {
-        $updateData = assurance::find($id);
-        $updateData->delete($request->all());
-        return redirect()->back()->with('success','Employe supprimer avec succès');
-    }
-    // ********************************************************************
 
+    public function destroy_assurance($id)
+    {
+        $assurance = Assurance::find($id);
+        $assurance->delete();
+        return redirect()->back()->with('success', 'Assurance supprimée avec succès');
+    }
+
+    // Contrôles
     public function controles()
     {
-        return view("history.controles", ["controles" => controle::where('delete', '<>', 0)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get()]);
+        return view("history.controles", [
+            "controles" => Controle::where('delete', '<>', 0)
+                ->where('user_id', Auth::user()->id)
+                ->orderBy('id', 'desc')
+                ->get()
+        ]);
     }
+
     public function recovery_controle($id)
     {
-        $objet = controle::find($id);
-        $objet->update(['delete' => 0]);        
-        return redirect()->back()->with('success', "Employe Récupère Avec Succès");
+        $controle = Controle::find($id);
+        $controle->update(['delete' => 0]);
+        return redirect()->back()->with('success', "Contrôle récupéré avec succès");
     }
-    public function destroy_controle(Request $request, $id)
+
+    public function destroy_controle($id)
     {
-        $updateData = controle::find($id);
-        $updateData->delete($request->all());
-        return redirect()->back()->with('success','Employe supprimer avec succès');
+        $controle = Controle::find($id);
+        $controle->delete();
+        return redirect()->back()->with('success', 'Contrôle supprimé avec succès');
     }
-    // ********************************************************************
 }

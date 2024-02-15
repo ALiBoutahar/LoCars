@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\voiture;
+use App\Models\Voiture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,54 +10,51 @@ class VoitureController extends Controller
 {
     public function index()
     {
-        return view("pages.voitures.index",["voitures"=>voiture::where('delete', 0)->get()]);
+        $voitures = Voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        return view("pages.voitures.index", ["voitures" => $voitures]);
     } 
-// ********************************************************************************
 
     public function create()
     {
         return view("pages.voitures.create");
     }
-// ********************************************************************************
 
     public function store(Request $request)
     {
-        voiture::create($request->all());
-        return redirect()->back()->with('success', 'voiture ajouter avec succès');
+        $voitureData = $request->all();
+        $voitureData['user_id'] = Auth::user()->id;
+
+        Voiture::create($voitureData);
+        return redirect()->back()->with('success', 'Voiture ajoutée avec succès');
     }
-// ********************************************************************************
 
     public function show($id)
     {
-        return view("pages.voitures.show",["voiture"=>voiture::findOrFail($id)]);
+        $voiture = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+        return view("pages.voitures.show", ["voiture" => $voiture]);
     }
-// ********************************************************************************
 
     public function edit($id)
     {
-        return view("pages.voitures.edit",["voiture"=>voiture::findOrFail($id)]);
+        $voiture = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+        return view("pages.voitures.edit", ["voiture" => $voiture]);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $updateData = voiture::find($id);
-        $updateData->update($request->all());
-        return redirect()->back()->with('warning', 'voiture modifié avec succès');
+        $voiture = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+        $voiture->update($request->all());
+        return redirect()->back()->with('warning', 'Voiture modifiée avec succès');
     }
-// ********************************************************************************
-    // public function destroy($id)
-    // {
-    //     $post = voiture::find($id);
-    //     $post->delete();
-    //     return redirect("voiture")->with('success', 'voiture supprimer avec succès');
-    // }
 
     public function delete($id)
     {
-        $voiture = voiture::find($id);
+        $voiture = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+
         if ($voiture) {
             $voiture->update(['delete' => Auth::user()->id]);
+            return redirect()->back()->with('danger', 'Voiture supprimée avec succès');
         }
-        return redirect()->back()->with('danger', 'voiture supprimer avec succès');
+        return redirect()->back()->with('error', 'Erreur lors de la suppression de la voiture');
     }
 }

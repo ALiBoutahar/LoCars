@@ -36,9 +36,7 @@ Route::middleware('auth')->group(function () {
     // **************************************************
     Route::controller(HomeController::class)->group(function () {
         Route::get('/home', 'index');
-        Route::post('/searsh-voitures', 'searchVoitures');
         Route::get('/statistiques', 'charts');
-        Route::get('/history', 'history');
     });
 
     Route::controller(HistoryController::class)->group(function () {

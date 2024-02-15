@@ -4,7 +4,7 @@
     <div class="container-fluid d-none d-lg-block p-4 px-4">
         <div class="row g-4">
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="bg-secondary rounded h-100 p-4">
                     <div id="myPlot1" style="width:100%"></div>
                     <script>
@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="bg-secondary rounded h-100 p-4">
                     <div id="myPlot2" style="width:100%"></div>
                     <script>
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="bg-secondary rounded h-100 p-4">
                     <div id="myPlot4" style="width:100%"></div>
                     <script>
@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="bg-secondary rounded h-100 p-4">
                     <div id="myPlot5" style="width:100%"></div>
                     <script>

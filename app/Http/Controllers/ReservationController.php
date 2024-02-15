@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\client;
-use App\Models\voiture;
-use App\Models\reservation;
+use App\Models\Client;
+use App\Models\Voiture;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,58 +12,80 @@ class ReservationController extends Controller
 {
     public function index()
     {
-        return view("pages.reservations.index",["reservations"=>reservation::where('delete', 0)->where('user_id', Auth::user()->id)->get()]);
+        $reservations = Reservation::where('delete', 0)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+        
+        return view("pages.reservations.index", ["reservations" => $reservations]);
     } 
-// ********************************************************************************
 
     public function create()
     {
-        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
-        $clients = client::where('delete', 0)->where('user_id', Auth::user()->id)->get();
-        return view("pages.reservations.create",["voitures"=>$voitures, "clients"=>$clients]);
+        $voitures = Voiture::where('delete', 0)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+        
+        $clients = Client::where('delete', 0)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+        
+        return view("pages.reservations.create", ["voitures" => $voitures, "clients" => $clients]);
     }
-// ********************************************************************************
 
     public function store(Request $request)
     {
-        reservation::create($request->all());
-        return redirect()->back()->with('success', 'reservation ajouter avec succès');
+        $reservationData = $request->all();
+        $reservationData['user_id'] = Auth::user()->id;
+
+        Reservation::create($reservationData);
+        return redirect()->back()->with('success', 'Réservation ajoutée avec succès');
     }
-// ********************************************************************************
 
     public function show($id)
     {
-        return view("pages.reservations.show",["reservation"=>reservation::findOrFail($id)]);
+        $reservation = Reservation::where('id', $id)
+            ->where('user_id', Auth::user()->id)
+            ->firstOrFail();
+        
+        return view("pages.reservations.show", ["reservation" => $reservation]);
     }
-// ********************************************************************************
 
     public function edit($id)
     {
-        $voitures = voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
-        $clients = client::where('delete', 0)->where('user_id', Auth::user()->id)->get();
-        return view("pages.reservations.edit",["reservation"=>reservation::findOrFail($id),"voitures"=>$voitures, "clients"=>$clients]);
+        $reservation = Reservation::where('id', $id)
+            ->where('user_id', Auth::user()->id)
+            ->firstOrFail();
+        
+        $voitures = Voiture::where('delete', 0)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+        
+        $clients = Client::where('delete', 0)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+        
+        return view("pages.reservations.edit", ["reservation" => $reservation, "voitures" => $voitures, "clients" => $clients]);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $updateData = reservation::find($id);
-        $updateData->update($request->all());
-        return redirect()->back()->with('warning', 'reservation modifié avec succès');
+        $reservation = Reservation::where('id', $id)
+            ->where('user_id', Auth::user()->id)
+            ->firstOrFail();
+        $reservation->update($request->all());
+        return redirect()->back()->with('warning', 'Réservation modifiée avec succès');
     }
-// ********************************************************************************
-    // public function destroy($id)
-    // {
-    //     $post = reservation::find($id);
-    //     $post->delete();
-    //     return redirect("reservation")->with('success', 'reservation supprimer avec succès');
-    // }
 
     public function delete($id)
     {
-        $reservation = reservation::find($id);
+        $reservation = Reservation::where('id', $id)
+            ->where('user_id', Auth::user()->id)
+            ->firstOrFail();
+
         if ($reservation) {
             $reservation->update(['delete' => Auth::user()->id]);
+            return redirect()->back()->with('danger', 'Réservation supprimée avec succès');
         }
-        return redirect()->back()->with('danger', 'reservation supprimer avec succès');
+        return redirect()->back()->with('error', 'Erreur lors de la suppression de la réservation');
     }
 }
