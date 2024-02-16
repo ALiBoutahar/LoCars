@@ -20,13 +20,19 @@ class VoitureController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $voitureData = $request->all();
-        $voitureData['user_id'] = Auth::user()->id;
-
-        Voiture::create($voitureData);
-        return redirect()->back()->with('success', 'Voiture ajoutée avec succès');
+{
+    $path_image = null;
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $path = $image->store('Images', 'public');
+        $path_image = $path;
     }
+    $voitureData = $request->all();
+    $voitureData['user_id'] = Auth::user()->id;
+    $voitureData['image'] = $path_image;
+    Voiture::create($voitureData);
+    return redirect()->back()->with('success', 'Voiture ajoutée avec succès');
+}
 
     public function show($id)
     {
@@ -43,7 +49,15 @@ class VoitureController extends Controller
     public function update(Request $request, $id)
     {
         $voiture = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
-        $voiture->update($request->all());
+        $voiture->update($request->all());    
+        $voituree = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+        File::delete(storage_path('app/public/' . $voituree->image));          
+        if($request->hasfile('image')){
+            $image = $request->image('image');
+            $path = $image->store('Images','public');
+            $voiture->image = $path;
+        }
+        $voituree->update();
         return redirect()->back()->with('warning', 'Voiture modifiée avec succès');
     }
 

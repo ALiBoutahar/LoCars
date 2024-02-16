@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <a href="{{url('/statistiques')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Statistiques</a>
-                    <div class="nav-item dropdown">
+                    {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-history me-2"></i>Historiques</a>
                         <div class="dropdown-menu bg-transparent border-0 ps-5">
                             <a href="{{url('/history')}}" class="dropdown-item">History</a>
@@ -96,7 +96,7 @@
                             <a href="{{url('/history/assurances')}}" class="dropdown-item">Assurances</a>
                             <a href="{{url('/history/accidents')}}" class="dropdown-item">Accidents</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </nav>
         </div>
@@ -112,13 +112,14 @@
                             <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            
+                            <a href="{{url('/profile')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4">Profile</a>
+                            <a href="{{url('/history')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4">Historique</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <x-dropdown-link style="color: rgb(151, 151, 151)" :href="route('logout')"
+                                <x-dropdown-link class="dropdown-item" style="color: rgb(151, 151, 151)" :href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Déconnexion') }}
                                 </x-dropdown-link>
                             </form>
                         </div>
@@ -127,22 +128,6 @@
             </nav>
             <div >
                 <script>
-
-                    $(document).ready(function() {
-                        toastr.options = {
-                            "closeButton": true,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        };
-                    });
                     // Afficher les messages Toastr
                     @if(Session::has('success'))
                         toastr.success("{{ Session::get('success') }}", "Succès");
@@ -199,7 +184,6 @@
         </div>
     </div>
     
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('lib/chart/chart.min.js')}}"></script>
     <script src="{{asset('lib/easing/easing.min.js')}}"></script>

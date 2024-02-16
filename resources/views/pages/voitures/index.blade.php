@@ -28,7 +28,7 @@
                     <tbody>
                         @foreach($voitures as $a)
                                 <tr class="text-center">
-                                    <td>{{ $a->image }}</td>
+                                    <td><img src="{{asset('storage/'.$a->image)}}" class="rounded" alt="..." style="max-height: 100px;"></td>
                                     <td>{{ $a->matricule }}</td>
                                     <td>{{ $a->model }}</td>
                                     <td>{{ $a->km }}</td>

@@ -9,7 +9,7 @@
         </div>
         <div class="col-sm-12 col-xl-12">
             <div class="bg-secondary rounded h-100 p-4"> 
-                <form class="row" action="{{ url('/voiture') }}" method="POST">
+                <form class="row" action="{{ url('/voiture') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-6 row mb-4">
                         <label for="matricule" class="col-sm-2 col-form-label">Matricule</label>

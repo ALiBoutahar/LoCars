@@ -10,8 +10,16 @@
         <div class="col-sm-12 col-xl-12">
             <div class="bg-secondary rounded h-100 p-4">
                 <form class="row" action="{{ url('voiture/'. $voiture->id) }}" method="POST">
-                    @method('patch');
+                    @method('patch')
                     @csrf
+                    <div class="col-md-6 row mb-4">
+                        @if ($voiture->image)
+                            <img src="{{asset('storage/'.$voiture->image)}}" class="rounded" alt="..." style="max-height: 160px; width: 20%;">
+                        @else
+                            <label for="image" class="form-label" style="width: 20%">Image</label>
+                        @endif
+                        <input class="form-control bg-dark" style="width: 77%" type="file" name="image" id="image" value="{{ $voiture->image}}">
+                    </div>
                     <div class="col-md-6 row mb-4">
                         <label for="matricule" class="col-sm-2 col-form-label">Matricule</label>
                         <div class="col-sm-10">
@@ -47,10 +55,6 @@
                         <div class="col-sm-10">
                             <input type="text" name="nbrplace" class="form-control" id="nbrplace" value="{{ $voiture->nbrplace}}">
                         </div>
-                    </div>
-                    <div class="col-md-6 row mb-4">
-                        <label for="image" class="form-label" style="width: 20%">Image</label>
-                        <input class="form-control bg-dark" style="width: 77%" type="file" name="image" id="image" value="{{ $voiture->image}}">
                     </div>
                     <div class="col-md-6 row mb-4">
                         <label for="nbrplace" class="col-sm-2 col-form-label">Status</label>

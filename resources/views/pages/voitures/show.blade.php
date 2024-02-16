@@ -10,7 +10,7 @@
             <div class="col-lg-6">
                 <div class="bg-secondary rounded h-100 p-4 pt-2">
                     <div class="text-center">
-                        <img class="img-fluid rounded mx-auto mb-3" src="{{asset('img/clio5.png')}}" style="max-width: 250px;">
+                        <img class="img-fluid rounded mx-auto mb-3" src="{{asset('storage/'.$voiture->image)}}" style="max-width: 250px;">
                     </div>
                     <div class="row">
                         <p class="col-xl-6">Matricule : {{ $voiture->matricule }}</p>
