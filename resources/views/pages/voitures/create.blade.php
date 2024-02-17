@@ -38,7 +38,7 @@
                     <div class="col-md-6 row mb-4">
                         <label for="color" class="col-sm-2 col-form-label">Color</label>
                         <div class="col-sm-10">
-                            <input type="text" name="color" class="form-control" id="color">
+                            <input type="color" name="color" class="form-control" id="color">
                         </div>
                     </div>
                     <div class="col-md-6 row mb-4">

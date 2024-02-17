@@ -9,16 +9,15 @@
         </div>
         <div class="col-sm-12 col-xl-12">
             <div class="bg-secondary rounded h-100 p-4">
-                <form class="row" action="{{ url('voiture/'. $voiture->id) }}" method="POST">
+                <form class="row" action="{{ url('voiture/'. $voiture->id) }}" method="POST" enctype="multipart/form-data">
                     @method('patch')
                     @csrf
                     <div class="col-md-6 row mb-4">
+                        <label for="image" class="col-sm-2 form-label">Image</label>
                         @if ($voiture->image)
-                            <img src="{{asset('storage/'.$voiture->image)}}" class="rounded" alt="..." style="max-height: 160px; width: 20%;">
-                        @else
-                            <label for="image" class="form-label" style="width: 20%">Image</label>
+                            <img src="{{asset('storage/'.$voiture->image)}}" class="rounded" alt="..." style="max-height: 160px; width: 20%;">                            
                         @endif
-                        <input class="form-control bg-dark" style="width: 77%" type="file" name="image" id="image" value="{{ $voiture->image}}">
+                        <input class="form-control bg-dark m-0 p-0" style="width: 61%; height:30px;" type="file" name="image" id="image" value="{{ $voiture->image}}">
                     </div>
                     <div class="col-md-6 row mb-4">
                         <label for="matricule" class="col-sm-2 col-form-label">Matricule</label>
@@ -47,7 +46,7 @@
                     <div class="col-md-6 row mb-4">
                         <label for="color" class="col-sm-2 col-form-label">Color</label>
                         <div class="col-sm-10">
-                            <input type="text" name="color" class="form-control" id="color" value="{{ $voiture->color}}">
+                            <input type="color" name="color" class="form-control" id="color" value="{{ $voiture->color}}">
                         </div>
                     </div>
                     <div class="col-md-6 row mb-4">

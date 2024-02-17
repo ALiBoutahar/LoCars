@@ -19,22 +19,16 @@
                             <th scope="col">Image</th>
                             <th scope="col">Matricule</th>
                             <th scope="col">Model</th>
-                            <th scope="col">Km</th>
-                            <th scope="col">Marque</th>
-                            <th scope="col">color</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($voitures as $a)
                             <tr class="text-center">
-                                <td>{{ $a->image }}</td>
+                                <td><img src="{{asset('storage/'.$a->image)}}" class="rounded" alt="..." style="max-height: 70px;"></td>
                                 <td>{{ $a->matricule }}</td>
                                 <td>{{ $a->model }}</td>
-                                <td>{{ $a->km }}</td>
-                                <td>{{ $a->marque }}</td>
-                                <td>{{ $a->color }}</td>
-                                <td class="d-flex justify-content-center">
+                                <td class="d-flex justify-content-center align-items-center" style="height: 70px;">
                                     <form class="pe-2" action="{{ url('h_voitures/'. $a->id.'/recovery') }}" method="POST">
                                         @csrf
                                         @method('PATCH')

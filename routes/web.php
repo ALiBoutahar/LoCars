@@ -24,9 +24,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,7 +32,7 @@ Route::middleware('auth')->group(function () {
 
     // **************************************************
     Route::controller(HomeController::class)->group(function () {
-        Route::get('/home', 'index');
+        Route::get('/', 'index');
         Route::get('/statistiques', 'charts');
     });
 

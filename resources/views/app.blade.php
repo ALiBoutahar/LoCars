@@ -68,11 +68,11 @@
 
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
-                <a href="{{url('/home')}}" class="navbar-brand mx-4 mb-3">
+                <a href="{{url('/')}}" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>LoCars</h3>
                 </a>
                 <div class="navbar-nav w-100">
-                    <a href="{{url('/home')}}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Accuel</a>
+                    <a href="{{url('/')}}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Accuel</a>
                     <a href="{{url('/reservations')}}" class="nav-item nav-link"><i class="fa fa-bookmark me-2"></i>Reservations</a>
                     <a href="{{url('/clients')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Clients</a>
                     <a href="{{url('/voitures')}}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Voitures</a>

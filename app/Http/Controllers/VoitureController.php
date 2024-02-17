@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Voiture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
 
 class VoitureController extends Controller
 {
@@ -49,25 +51,34 @@ class VoitureController extends Controller
     public function update(Request $request, $id)
     {
         $voiture = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
-        $voiture->update($request->all());    
-        $voituree = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
-        File::delete(storage_path('app/public/' . $voituree->image));          
+        
+        $voiture->matricule = $request->matricule;
+        $voiture->marque = $request->marque;
+        $voiture->color = $request->color;
+        $voiture->model = $request->model;
+        $voiture->km = $request->km;
+        $voiture->nbrplace = $request->nbrplace;
+        $voiture->status = $request->status;
+
+             
         if($request->hasfile('image')){
-            $image = $request->image('image');
+            if (File::exists(storage_path('app/public/' . $voiture->image))) {
+                File::delete(storage_path('app/public/' . $voiture->image));
+            }   
+            $image = $request->file('image');
             $path = $image->store('Images','public');
             $voiture->image = $path;
         }
-        $voituree->update();
+        $voiture->update();
         return redirect()->back()->with('warning', 'Voiture modifiée avec succès');
     }
-
     public function delete($id)
     {
         $voiture = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
 
         if ($voiture) {
             $voiture->update(['delete' => Auth::user()->id]);
-            return redirect()->back()->with('danger', 'Voiture supprimée avec succès');
+            return redirect('/voitures')->with('danger', 'Voiture supprimée avec succès');
         }
         return redirect()->back()->with('error', 'Erreur lors de la suppression de la voiture');
     }
