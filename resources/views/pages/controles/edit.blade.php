@@ -16,7 +16,7 @@
                         <label for="model" class="col-sm-2 col-form-label">Voitures</label>
                         <div class="col-sm-10">
                             <select name="voiture_id" class="form-select" required>
-                                <option selected disabled align='center'>{{ $controle->voiture_id }}</option>
+                                <option selected disabled align='center'>{{ $controle->voitures->matricule }}</option>
                                 @foreach ($voitures as $a)
                                     <option value="{{ $a->id }}"> {{ $a->matricule }} - {{ $a->marque }}</option>
                                 @endforeach

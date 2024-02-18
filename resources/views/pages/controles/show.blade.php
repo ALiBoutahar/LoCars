@@ -13,7 +13,7 @@
                     <div class="col-md-6 row mb-4">
                         <label for="car" class="col-sm-2 col-form-label">Voiture</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="car" value="{{ $controle->voiture_id }}">
+                            <input type="text" class="form-control" id="car" value="{{ $controle->voitures->matricule }}">
                         </div>
                     </div>
                     <div class="col-md-6 row mb-4">

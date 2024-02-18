@@ -16,7 +16,7 @@
                         <label for="voiture" class="col-sm-2 col-form-label">Voitures</label>
                         <div class="col-sm-10">
                             <select name="voiture_id" class="form-select" required>
-                                <option selected disabled align='center'>{{ $accident->voiture_id }}</option>
+                                <option selected disabled align='center'>{{ $accident->voitures->matricule }}</option>
                                 @foreach ($voitures as $a)
                                     <option value="{{ $a->id }}"> {{ $a->matricule }} - {{ $a->marque }}</option>
                                 @endforeach
@@ -27,7 +27,7 @@
                         <label for="client" class="col-sm-2 col-form-label">Clients</label>
                         <div class="col-sm-10">
                             <select name="client_id" class="form-select" required>
-                                <option selected disabled align='center'>{{ $accident->client_id }}</option>
+                                <option selected disabled align='center'>{{ $accident->clients->nom }} {{ $accident->clients->prennom }}</option>
                                 @foreach ($clients as $a)
                                     <option value="{{ $a->id }}"> {{ $a->nom }} - {{ $a->prenom }}</option>
                                 @endforeach

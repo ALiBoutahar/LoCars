@@ -15,7 +15,8 @@
                 <table id="myTable" class="table text-center align-middle table-bordered table-hover">
                     <thead>
                         <tr class="text-white">
-                            <th scope="col">Client</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Cin Client</th>
                             <th scope="col">Voiture</th>
                             <th scope="col">Date-D</th>
                             <th scope="col">Date-F</th> 
@@ -28,8 +29,9 @@
                     <tbody>
                         @foreach($reservations as $a)
                                 <tr class="text-center">
-                                    <td>{{ $a->client_id }}</td>
-                                    <td>{{ $a->voiture_id }}</td>
+                                    <td>{{ $a->id }}</td>
+                                    <td>{{ $a->clients->cin }}</td>
+                                    <td>{{ $a->voitures->matricule }}</td>
                                     <td>{{ $a->date_d }}</td>
                                     <td>{{ $a->date_f }}</td>
                                     <td>{{ $a->avance }}</td>

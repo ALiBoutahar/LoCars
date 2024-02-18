@@ -16,7 +16,7 @@
                     <table id="myTable" class="table text-center align-middle table-bordered table-hover">
                         <thead>
                             <tr class="text-white">
-                                <th scope="col">Id</th>
+                                <th scope="col">#</th>
                                 <th scope="col">Voiture</th>
                                 <th scope="col">Nom</th>
                                 <th scope="col">Date d</th>
@@ -30,7 +30,7 @@
                             @foreach($controles as $a)
                                 <tr class="text-center">
                                     <td>{{ $a->id }}</td>
-                                    <td>{{ $a->voiture_id }}</td>
+                                    <td>{{ $a->voitures->matricule }}</td>
                                     <td>{{ $a->nom }}</td>
                                     <td>{{ $a->date_d }}</td>
                                     <td>{{ $a->date_f }}</td>

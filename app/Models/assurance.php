@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\voiture;
 
 class assurance extends Model
 {
@@ -20,4 +21,8 @@ class assurance extends Model
         'type',
         'delete',
     ];
+
+    public function voitures(){
+        return $this->belongsTo(voiture::class,'voiture_id',"id");
+    }
 }

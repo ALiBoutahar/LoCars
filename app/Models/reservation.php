@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\client;
+use App\Models\voiture;
+
+
 
 class reservation extends Model
 {
@@ -23,4 +27,12 @@ class reservation extends Model
         'type',
         'delete',
     ];
+
+    public function clients(){
+        return $this->belongsTo(client::class,'client_id',"id");
+    }
+
+    public function voitures(){
+        return $this->belongsTo(voiture::class,'voiture_id',"id");
+    }
 }

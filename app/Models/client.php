@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\reservation;
+use App\Models\accident;
+
+
 
 class client extends Model
 {
@@ -19,4 +23,10 @@ class client extends Model
         'type',
         'delete',
     ];
+    public function reservations(){
+        return $this->hasMany(reservation::class);
+    }
+    public function accidents(){
+        return $this->hasMany(accident::class);
+    }
 }

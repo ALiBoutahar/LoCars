@@ -9,11 +9,13 @@ use App\Models\Accident;
 use App\Models\Reservation;
 use App\Models\Assurance;
 use App\Models\Controle;
+use Illuminate\Support\Facades\File;
+
 
 use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
-{
+{ 
     public function index()
     {
         return view("history.index");
@@ -65,6 +67,9 @@ class HistoryController extends Controller
     public function destroy_voiture($id)
     {
         $voiture = Voiture::find($id);
+        if (File::exists(storage_path('app/public/' . $voiture->image))) {
+            File::delete(storage_path('app/public/' . $voiture->image));
+        } 
         $voiture->delete();
         return redirect()->back()->with('success', 'Voiture supprimée avec succès');
     }

@@ -56,7 +56,7 @@ class VoitureController extends Controller
         $voiture->marque = $request->marque;
         $voiture->color = $request->color;
         $voiture->model = $request->model;
-        $voiture->km = $request->km;
+        $voiture->km = $request->km; 
         $voiture->nbrplace = $request->nbrplace;
         $voiture->status = $request->status;
 

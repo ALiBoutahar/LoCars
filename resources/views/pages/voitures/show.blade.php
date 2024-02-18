@@ -52,7 +52,7 @@
                         <li class="list-group-item bg-transparent">Matricule : <b>{{ $voiture->matricule }}</b></li>
                         <li class="list-group-item bg-transparent">Model : <b>{{ $voiture->model }}</b></li>
                         <li class="list-group-item bg-transparent">Marque : <b>{{ $voiture->marque }}</b></li>
-                        <li class="list-group-item bg-transparent"><span class="d-flex ">Color : <input type="color" class="ms-2 form-control bg-dark w-25" value="{{ $voiture->color }}"></span></li>
+                        <li class="list-group-item bg-transparent"><span class="d-flex ">Color : <input type="color" class="ms-2 form-control bg-dark w-25 p-1" value="{{ $voiture->color }}"></span></li>
                         <li class="list-group-item bg-transparent">Nº Places : <b>{{ $voiture->nbrplace }}</b></li>
                         <li class="list-group-item bg-transparent">Km : <b>{{ $voiture->km }}K</b></li>
                         <li class="list-group-item bg-transparent">Déscription : <b>{{ $voiture->status }}</b></li>

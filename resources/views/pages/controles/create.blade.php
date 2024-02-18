@@ -14,7 +14,7 @@
                     <div class="col-md-6 row mb-4">
                         <label for="model" class="col-sm-2 col-form-label">Voitures</label>
                         <div class="col-sm-10">
-                            <select name="voiture_id" class="form-select " required>
+                            <select name="voiture_id" class="form-select" required>
                                 <option selected disabled align='center'>----Choisez voiture----</option>
                                 @foreach ($voitures as $a)
                                     <option value="{{ $a->id }}"> {{ $a->matricule }} - {{ $a->marque }}</option>

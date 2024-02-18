@@ -10,13 +10,13 @@
         <div class="col-sm-12 col-xl-12">
             <div class="bg-secondary rounded h-100 p-4">
                 <form class="row" action="{{ url('reservation/'. $reservation->id) }}" method="POST">
-                    @method('patch');
+                    @method('patch')
                     @csrf
                     <div class="col-md-6 row mb-4">
                         <label for="matricule" class="col-sm-2 col-form-label">Client</label>
                         <div class="col-sm-10">
                             <select name="client_id" class="form-select " required>
-                                <option selected disabled align='center'>{{ $reservation->client_id }}</option>
+                                <option selected disabled align='center'>{{ $reservation->clients->nom }} {{ $reservation->clients->prenom }}</option>
                                 @foreach ($clients as $a)
                                     <option value="{{ $a->id }}"> {{ $a->cin }} - {{ $a->nom }} - {{ $a->prenom }} </option>
                                 @endforeach
@@ -27,7 +27,7 @@
                         <label for="model" class="col-sm-2 col-form-label">Voitures</label>
                         <div class="col-sm-10">
                             <select name="voiture_id" class="form-select " required>
-                                <option selected disabled align='center'>{{ $reservation->voiture_id }}</option>
+                                <option selected disabled align='center'>{{ $reservation->voitures->matricule }}</option>
                                 @foreach ($voitures as $a)
                                     <option value="{{ $a->id }}"> {{ $a->matricule }} - {{ $a->marque }}</option>
                                 @endforeach

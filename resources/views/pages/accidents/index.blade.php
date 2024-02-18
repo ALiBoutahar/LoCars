@@ -16,9 +16,9 @@
                     <table id="myTable" class="table text-center align-middle table-bordered table-hover">
                         <thead>
                             <tr class="text-white">
-                                <th scope="col">Id</th>
+                                <th scope="col">#</th>
                                 <th scope="col">Voiture</th>
-                                <th scope="col">Nom</th>
+                                <th scope="col">Client</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -27,8 +27,8 @@
                             @foreach($accidents as $a)
                                 <tr class="text-center">
                                     <td>{{ $a->id }}</td>
-                                    <td>{{ $a->voiture_id }}</td>
-                                    <td>{{ $a->client_id }}</td>
+                                    <td>{{ $a->voitures->matricule }}</td>
+                                    <td>{{ $a->clients->cin}}</td>
                                     <td>{{ $a->date }}</td>
                                     <td>
                                         <form action="{{ url('accident/'. $a->id.'/delete') }}" method="POST">

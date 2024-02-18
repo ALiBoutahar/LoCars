@@ -13,13 +13,13 @@
                     <div class="col-md-6 row mb-4">
                         <label for="client" class="col-sm-2 col-form-label">Client</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="client" value="{{ $reservation->client_id}}">
+                            <input type="text" class="form-control" id="client" value="{{ $reservation->clients->cin}} - {{ $reservation->clients->nom}} {{ $reservation->clients->prenom}}">
                         </div>
                     </div>
                     <div class="col-md-6 row mb-4">
                         <label for="car" class="col-sm-2 col-form-label">Voiture</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="car" value="{{ $reservation->voiture_id}}">
+                            <input type="text" class="form-control" id="car" value="{{ $reservation->voitures->matricule}}">
                         </div>
                     </div>
                     <div class="col-md-6 row mb-4">
