@@ -11,7 +11,7 @@ class AssuranceController extends Controller
 {
     public function index()
     {
-        $assurances = Assurance::where('delete', 0)->get();
+        $assurances = Assurance::where('delete', 0)->where('user_id', Auth::user()->id)->get();
         return view("pages.assurances.index", ["assurances" => $assurances]);
     } 
 

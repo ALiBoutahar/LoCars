@@ -11,7 +11,7 @@ class ControleController extends Controller
 {
     public function index()
     { 
-        $controles = Controle::where('delete', 0)->get();
+        $controles = Controle::where('delete', 0)->where('user_id', Auth::user()->id)->get();
         return view("pages.controles.index", ["controles" => $controles]);
     } 
 

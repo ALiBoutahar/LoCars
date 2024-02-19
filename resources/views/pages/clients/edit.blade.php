@@ -5,7 +5,7 @@
     <div class="row g-4 d-flex justify-content-center">
         <div class="col-sm-12 col-xl-12 d-flex justify-content-between">
             <h5>Modifier Client Nº {{ $client->cin }}</h5>
-            <a class="btn btn-sm btn-primary" href="{{url('/clients')}}">x</a>
+            <a class="btn btn-sm btn-primary" href="{{url('/clients')}}">X</a>
         </div>
         <div class="col-sm-12 col-xl-8">
             <div class="bg-secondary rounded h-100 p-4">

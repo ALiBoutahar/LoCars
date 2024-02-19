@@ -12,7 +12,7 @@
                         <a href="{{url('/assurances')}}">
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-3">
                                 <b class="">Assurances</b>
-                                <b class="mb-0">8 Fois</b>
+                                <b class="mb-0">{{count($assurances)}} Fois</b>
                             </div>
                         </a>
                     </div>
@@ -20,7 +20,7 @@
                         <a href="{{url('/controles')}}" >
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-3">
                                 <b class="">Controle Technique</b>
-                                <b class="mb-0">5 Fois</b>
+                                <b class="mb-0">{{count($controles)}} Fois</b>
                             </div>
                         </a>
                     </div>
@@ -28,7 +28,7 @@
                         <a href="{{url('/accidents')}}">
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-3">
                                 <b class="">Accidents</b>
-                                <b class="mb-0">2 Fois</b>
+                                <b class="mb-0">{{count($accidents)}} Fois</b>
                             </div>
                         </a>
                     </div>
@@ -70,25 +70,171 @@
             </div>
         </div>
     </div>
-    
-{{-- 
-    <div class="row">
-        <div class="col-xl-6 text-center">
-            <img class="img-fluid rounded mx-auto mb-3" src="{{asset('storage/'.$voiture->image)}}" style="max-width: 250px;">
+
+    <div class="container-fluid d-none d-lg-block pt-2 px-4">
+        <div class="d-flex justify-content-between">
+            <div><h3>Assurances</h3></div>
         </div>
-        <div class="col-xl-6">
-            <p>Matricule : <b>{{ $voiture->matricule }}</b></p>
-            <p>Model : <b>{{ $voiture->model }}</b></p>
-            <p class="col-xl-6">Marque : {{ $voiture->marque }}</p>
-            <p class="col-xl-6">Color : {{ $voiture->color }}</p>
-            <p class="col-xl-6">Nº Places : {{ $voiture->nbrplace }}</p>
-            <p class="col-xl-6">Km : {{ $voiture->km }}K</p>
+        @if (count($assurances)==0)
+            <div class="alert alert-primary pb-1">
+                <p align="center"><b>Aucune assurances enregistrer</b></p>
+            </div>
+        @else
+            <div class="bg-secondary text-center rounded p-2">
+                <div class="table-responsive">
+                    <table id="myTable" class="table text-center align-middle table-bordered table-hover">
+                        <thead>
+                            <tr class="text-white">
+                                <th scope="col">#</th>
+                                <th scope="col">Voiture</th>
+                                <th scope="col">Date d</th>
+                                <th scope="col">Date f</th>
+                                <th scope="col">Societe</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($assurances as $a)
+                                <tr class="text-center">
+                                    <td>{{ $a->id }}</td>
+                                    <td>{{ $a->voitures->matricule }}</td>
+                                    <td>{{ $a->date_d }}</td>
+                                    <td>{{ $a->date_f }}</td>
+                                    <td>{{ $a->ste }}</td>
+                                    <td>{{ $a->prix }}</td>
+                                    <td>
+                                        <form action="{{ url('assurance/'. $a->id.'/delete') }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <a href="{{url('assurance/'. $a->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                            <a href="{{url('assurance/'. $a->id .'/edit') }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are You Sure ??')"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <script>
+                    $(document).ready(function() {
+                        $('#myTable').DataTable();
+                    });
+                </script>
+                
+            </div>
+        @endif
+    </div>
+
+    <div class="container-fluid d-none d-lg-block pt-2 px-4">
+        <div class="d-flex justify-content-between">
+            <div><h3>Controles</h3></div>
         </div>
-        <p class="col-xl-6">Marque : {{ $voiture->marque }}</p>
-        <p class="col-xl-6">Color : {{ $voiture->color }}</p>
-        <p class="col-xl-6">Nº Places : {{ $voiture->nbrplace }}</p>
-        <p class="col-xl-6">Km : {{ $voiture->km }}K</p>
-        <p class="col-xl-12 mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet diam</p>
-    </div> --}}
+        @if (count($controles)==0)
+            <div class="alert alert-primary pb-1">
+                <p align="center"><b>Aucune Controles enregistrer</b></p>
+            </div>
+        @else
+            <div class="bg-secondary text-center rounded p-2">
+                <div class="table-responsive">
+                    <table id="myTable" class="table text-center align-middle table-bordered table-hover">
+                        <thead>
+                            <tr class="text-white">
+                                <th scope="col">#</th>
+                                <th scope="col">Voiture</th>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Date d</th>
+                                <th scope="col">Date f</th>
+                                <th scope="col">Societe</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($controles as $a)
+                                <tr class="text-center">
+                                    <td>{{ $a->id }}</td>
+                                    <td>{{ $a->voitures->matricule }}</td>
+                                    <td>{{ $a->nom }}</td>
+                                    <td>{{ $a->date_d }}</td>
+                                    <td>{{ $a->date_f }}</td>
+                                    <td>{{ $a->ste }}</td>
+                                    <td>{{ $a->prix }}</td>
+                                    <td>
+                                        <form action="{{ url('controle/'. $a->id.'/delete') }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <a href="{{url('controle/'. $a->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                            <a href="{{url('controle/'. $a->id .'/edit') }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are You Sure ??')"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <script>
+                    $(document).ready(function() {
+                        $('#myTable').DataTable();
+                    });
+                </script>
+                
+            </div>
+        @endif
+    </div>
+
+    <div class="container-fluid d-none d-lg-block pt-2 px-4">
+        <div class="d-flex justify-content-between">
+            <div><h3>Accidents</h3></div>
+        </div>
+        @if (count($accidents)==0)
+            <div class="alert alert-primary pb-1">
+                <p align="center"><b>Aucune accidents enregistrer</b></p>
+            </div>
+        @else
+            <div class="bg-secondary text-center rounded p-2">
+                <div class="table-responsive">
+                    <table id="myTable" class="table text-center align-middle table-bordered table-hover">
+                        <thead>
+                            <tr class="text-white">
+                                <th scope="col">#</th>
+                                <th scope="col">Voiture</th>
+                                <th scope="col">Client</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($accidents as $a)
+                                <tr class="text-center">
+                                    <td>{{ $a->id }}</td>
+                                    <td>{{ $a->voitures->matricule }}</td>
+                                    <td>{{ $a->clients->cin}}</td>
+                                    <td>{{ $a->date }}</td>
+                                    <td>
+                                        <form action="{{ url('accident/'. $a->id.'/delete') }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <a href="{{url('accident/'. $a->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                            <a href="{{url('accident/'. $a->id .'/edit') }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are You Sure ??')"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <script>
+                    $(document).ready(function() {
+                        $('#myTable').DataTable();
+                    });
+                </script>
+                
+            </div>
+        @endif
+    </div>
 
 @endsection

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Voiture;
+use App\Models\Controle;
+use App\Models\Assurance;
+use App\Models\Accident;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -38,8 +41,12 @@ class VoitureController extends Controller
 
     public function show($id)
     {
+        $controles = Controle::where('delete', 0)->where('user_id', Auth::user()->id)->where('voiture_id', $id)->get();
+        $assurances = Assurance::where('delete', 0)->where('user_id', Auth::user()->id)->where('voiture_id', $id)->get();
+        $accidents = Accident::where('delete', 0)->where('user_id', Auth::user()->id)->where('voiture_id', $id)->get();
         $voiture = Voiture::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
-        return view("pages.voitures.show", ["voiture" => $voiture]);
+        return view("pages.voitures.show", ["voiture" => $voiture , "controles" => $controles ,"assurances" => $assurances ,"accidents" => $accidents]);
+
     }
 
     public function edit($id)

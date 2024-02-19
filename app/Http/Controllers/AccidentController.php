@@ -6,7 +6,7 @@ use App\Models\Client;
 use App\Models\Accident;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+ 
 class AccidentController extends Controller
 {
     public function index()

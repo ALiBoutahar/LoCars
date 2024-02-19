@@ -76,14 +76,18 @@
                     <a href="{{url('/reservations')}}" class="nav-item nav-link"><i class="fa fa-bookmark me-2"></i>Reservations</a>
                     <a href="{{url('/clients')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Clients</a>
                     <a href="{{url('/voitures')}}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Voitures</a>
-                    <div class="nav-item dropdown">
+
+                    <a href="{{url('/Assurances')}}" class="nav-item nav-link"><i class="fa fa-info me-2"></i>Assurances</a>
+                    <a href="{{url('/controles')}}" class="nav-item nav-link"><i class="fa fa-info me-2"></i>controles Tech</a>
+                    <a href="{{url('/accidents')}}" class="nav-item nav-link"><i class="fa fa-info me-2"></i>accidents</a>
+                    {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Voitures Options</a>
                         <div class="dropdown-menu bg-transparent border-0 ps-5">
                             <a href="{{url('/assurances')}}" class="dropdown-item">Assurances</a>
                             <a href="{{url('/controles')}}" class="dropdown-item">Controles-Technique</a>
                             <a href="{{url('/accidents')}}" class="dropdown-item">Accidents</a>
                         </div>
-                    </div>
+                    </div> --}}
                     <a href="{{url('/statistiques')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Statistiques</a>
                     {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-history me-2"></i>Historiques</a>

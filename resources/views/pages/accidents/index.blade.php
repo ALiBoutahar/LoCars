@@ -55,26 +55,5 @@
     </div>
 
   
-    <!-- Modal -->
-    <div class="modal fade" id="chart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div id="myPlot3" style="width:100%"></div>
-                <script>
-                    var y = [3,5,7,4,11,9,15,11,18,22,8,4];
-                    var x = ["mois1", "mois2", "mois3", "mois4", "mois5", "mois6", "mois7", "mois8" , "mois9", "mois10", "mois11", "mois12"];
-                    var data = [{
-                        x:x,
-                        y:y,
-                        type:"line",
-                        orientation:"h",
-                        marker: {color:"blue"}
-                    }];
-                    var layout = {title:"les clients du dernier Année"};
-                    Plotly.newPlot("myPlot3", data, layout);
-                </script>
-            </div>
-        </div>
-    </div>
 
 @endsection
