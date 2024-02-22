@@ -7,6 +7,8 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AssuranceController;
 use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\ControleController;
+use App\Http\Controllers\AliController;
+
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HistoryController;
@@ -34,6 +36,15 @@ Route::middleware('auth')->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/statistiques', 'charts');
+    });
+
+    Route::controller(AliController::class)->group(function () {
+        Route::get('/ali', 'index');
+        Route::post('add', 'create');
+        Route::get('show/{id}', 'show');
+        Route::get('/edit/{id}', 'edit');
+        Route::post('update', 'update');
+        Route::patch('/delete', 'delete');    
     });
 
     Route::controller(HistoryController::class)->group(function () {

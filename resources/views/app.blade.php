@@ -44,10 +44,23 @@
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
     <style>
-        #myTable_length , #myTable_info{
+        #myTable_length, #myTable_info{
             display: flex;
             justify-content: flex-start;
         }
+        #Assurances_length, #myTable_info{
+            display: flex;
+            justify-content: flex-start;
+        }
+        #Controles_length, #myTable_info{
+            display: flex;
+            justify-content: flex-start;
+        }
+        #Accidents_length, #myTable_info{
+            display: flex;
+            justify-content: flex-start;
+        }
+
     </style>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -77,9 +90,9 @@
                     <a href="{{url('/clients')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Clients</a>
                     <a href="{{url('/voitures')}}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Voitures</a>
 
-                    <a href="{{url('/Assurances')}}" class="nav-item nav-link"><i class="fa fa-info me-2"></i>Assurances</a>
-                    <a href="{{url('/controles')}}" class="nav-item nav-link"><i class="fa fa-info me-2"></i>controles Tech</a>
-                    <a href="{{url('/accidents')}}" class="nav-item nav-link"><i class="fa fa-info me-2"></i>accidents</a>
+                    <a href="{{url('/assurances')}}" class="nav-item nav-link"><i class="fa fa-info me-2"></i>Assurances</a>
+                    <a href="{{url('/controles')}}" class="nav-item nav-link"><i class="fa fa-info me-2"></i>Controles Tech</a>
+                    <a href="{{url('/accidents')}}" class="nav-item nav-link"><i class="fa fa-info me-2"></i>Accidents</a>
                     {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Voitures Options</a>
                         <div class="dropdown-menu bg-transparent border-0 ps-5">
@@ -117,7 +130,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="{{url('/profile')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4">Profile</a>
-                            <a href="{{url('/history')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4">Historique</a>
+                            <a href="{{url('/history')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4">Historiques</a>
+                            <a href="{{url('/')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4">Paramètres</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link class="dropdown-item" style="color: rgb(151, 151, 151)" :href="route('logout')"
