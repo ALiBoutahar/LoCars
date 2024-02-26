@@ -53,6 +53,7 @@ return array(
     'App\\Http\\Requests\\UpdatehomeRequest' => $baseDir . '/app/Http/Requests/UpdatehomeRequest.php',
     'App\\Http\\Requests\\UpdatereservationRequest' => $baseDir . '/app/Http/Requests/UpdatereservationRequest.php',
     'App\\Http\\Requests\\UpdatevoitureRequest' => $baseDir . '/app/Http/Requests/UpdatevoitureRequest.php',
+    'App\\Models\\Clientt' => $baseDir . '/app/Models/Clientt.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\accident' => $baseDir . '/app/Models/accident.php',
     'App\\Models\\assurance' => $baseDir . '/app/Models/assurance.php',

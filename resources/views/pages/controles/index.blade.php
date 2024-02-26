@@ -2,16 +2,19 @@
 @section('main')
 
     <div class="container-fluid d-none d-lg-block pt-2 px-4">
-        <div class="d-flex justify-content-between">
-            <div><h3>Controles</h3></div>
-            <div><a href="{{ url('controle/create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a></div>
-        </div>
         @if (count($controles)==0)
             <div class="alert alert-primary pb-1">
                 <p align="center"><b>Aucune Controles enregistrer</b></p>
             </div>
         @else
             <div class="bg-secondary text-center rounded p-2">
+                <div class="d-flex justify-content-between">
+                    <div><h3>Controles</h3></div>
+                    <div>
+                        <a href="{{url('controles/pdf')}}" class="btn btn-info btn-sm me-2" onclick="return confirm('Are you sure you want to download the PDF?')">Télécharger pdf</a>
+                        <a href="{{ url('controle/create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table id="myTable" class="table text-center align-middle table-bordered table-hover">
                         <thead>

@@ -6,9 +6,19 @@ use App\Models\Client;
 use App\Models\Accident;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
- 
+use PDF;
+
 class AccidentController extends Controller
 {
+    
+
+    public function downloadPDF()
+    {
+        $accidents = Accident::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        $pdf = PDF::loadView('pages.accidents.pdf', compact('accidents'));
+        return $pdf->download('accidents.pdf');
+    }
+
     public function index()
     {
         return view("pages.accidents.index", ["accidents" => Accident::where('delete', 0)->where('user_id', Auth::user()->id)->get()]);

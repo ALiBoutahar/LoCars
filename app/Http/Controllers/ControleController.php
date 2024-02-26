@@ -6,9 +6,18 @@ use App\Models\Voiture;
 use App\Models\Controle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class ControleController extends Controller
 {
+
+    public function downloadPDF()
+    {
+        $controles = Controle::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        $pdf = PDF::loadView('pages.controles.pdf', compact('controles'));
+        return $pdf->download('controles.pdf');
+    }
+
     public function index()
     { 
         $controles = Controle::where('delete', 0)->where('user_id', Auth::user()->id)->get();

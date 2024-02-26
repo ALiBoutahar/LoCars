@@ -6,9 +6,17 @@ use App\Models\Voiture;
 use App\Models\Assurance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class AssuranceController extends Controller
 {
+    public function downloadPDF()
+    {
+        $assurances = Assurance::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        $pdf = PDF::loadView('pages.assurances.pdf', compact('assurances'));
+        return $pdf->download('assurances.pdf');
+    }
+
     public function index()
     {
         $assurances = Assurance::where('delete', 0)->where('user_id', Auth::user()->id)->get();

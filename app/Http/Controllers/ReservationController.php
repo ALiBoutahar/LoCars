@@ -7,9 +7,18 @@ use App\Models\Voiture;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class ReservationController extends Controller
 {
+    
+    public function downloadPDF()
+    {
+        $reservations = Reservation::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        $pdf = PDF::loadView('pages.reservations.pdf', compact('reservations'));
+        return $pdf->download('reservations.pdf');
+    }
+
     public function index()
     {
         $reservations = Reservation::where('delete', 0)

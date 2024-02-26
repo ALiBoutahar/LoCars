@@ -678,6 +678,7 @@ class ComposerStaticInitfd5afbca735159ae99d12321b447aa2e
         'App\\Http\\Requests\\UpdatehomeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatehomeRequest.php',
         'App\\Http\\Requests\\UpdatereservationRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatereservationRequest.php',
         'App\\Http\\Requests\\UpdatevoitureRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatevoitureRequest.php',
+        'App\\Models\\Clientt' => __DIR__ . '/../..' . '/app/Models/Clientt.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\accident' => __DIR__ . '/../..' . '/app/Models/accident.php',
         'App\\Models\\assurance' => __DIR__ . '/../..' . '/app/Models/assurance.php',

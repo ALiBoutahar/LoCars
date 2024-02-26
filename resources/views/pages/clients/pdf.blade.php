@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Liste des voitures</title>
+    <title>Liste des clients</title>
     <style>
         table {
             border-collapse: collapse;
@@ -20,19 +20,27 @@
     </style>
 </head>
 <body>
-    <h2>Liste des voitures</h2>
+    <h2>Liste des clients</h2>
     <table>
         <thead>
             <tr>
                 <th>id</th>
-                <th>matricule</th>
+                <th>Cin</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($voitures as $a)
+            @foreach($clients as $client)
                 <tr>
-                    <td>{{ $a->id }}</td>
-                    <td>{{ $a->matricule }}</td>
+                    <td>{{ $client->id }}</td>
+                    <td>{{ $client->cin }}</td>
+                    <td>{{ $client->nom }}</td>
+                    <td>{{ $client->prenom }}</td>
+                    <td>{{ $client->email }}</td>
+                    <td>{{ $client->phone }}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 use App\Models\client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
+// composer require barryvdh/laravel-dompdf
 
 class ClientController extends Controller
 {
+    public function downloadPDF()
+    {
+        $clients = client::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        $pdf = PDF::loadView('pages.clients.pdf', compact('clients'));
+        return $pdf->download('clients.pdf');
+    }
+
     public function index()
     {
         $clients = client::where('user_id', Auth::user()->id)->where('delete', 0)->get();

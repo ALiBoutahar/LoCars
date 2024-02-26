@@ -9,10 +9,18 @@ use App\Models\Accident;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-
+use PDF;
 
 class VoitureController extends Controller
-{
+{ 
+
+    public function downloadPDF()
+    {
+        $voitures = Voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();
+        $pdf = PDF::loadView('pages.voitures.pdf', compact('voitures'));
+        return $pdf->download('voitures.pdf');
+    }
+
     public function index()
     {
         $voitures = Voiture::where('delete', 0)->where('user_id', Auth::user()->id)->get();

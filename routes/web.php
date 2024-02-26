@@ -7,8 +7,6 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AssuranceController;
 use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\ControleController;
-use App\Http\Controllers\AliController;
-
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HistoryController;
@@ -36,15 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/statistiques', 'charts');
-    });
-
-    Route::controller(AliController::class)->group(function () {
-        Route::get('/ali', 'index');
-        Route::post('add', 'create');
-        Route::get('show/{id}', 'show');
-        Route::get('/edit/{id}', 'edit');
-        Route::post('update', 'update');
-        Route::patch('/delete', 'delete');    
     });
 
     Route::controller(HistoryController::class)->group(function () {
@@ -78,6 +67,7 @@ Route::middleware('auth')->group(function () {
 
     // **************************************************
     Route::controller(ClientController::class)->group(function () {
+        Route::get('clients/pdf', 'downloadPDF')->name('clients.pdf');
         Route::get('/clients', 'index');
         Route::get('/client/create', 'create');
         Route::get('/client/{id}', 'show');
@@ -90,6 +80,7 @@ Route::middleware('auth')->group(function () {
    
     // **************************************************
     Route::controller(VoitureController::class)->group(function () {
+        Route::get('/voitures/pdf', 'downloadPDF')->name('voitures.pdf');
         Route::get('/voitures', 'index');
         Route::get('/voiture/create', 'create');
         Route::get('/voiture/{id}', 'show');
@@ -102,6 +93,7 @@ Route::middleware('auth')->group(function () {
    
     // **************************************************
     Route::controller(ReservationController::class)->group(function () {
+        Route::get('/reservations/pdf', 'downloadPDF')->name('reservations.pdf');
         Route::get('/reservations', 'index');
         Route::get('/reservation/create', 'create');
         Route::get('/reservation/{id}', 'show');
@@ -114,6 +106,7 @@ Route::middleware('auth')->group(function () {
    
     // **************************************************
     Route::controller(AccidentController::class)->group(function () {
+        Route::get('/accidents/pdf', 'downloadPDF')->name('accidents.pdf');
         Route::get('/accidents', 'index');
         Route::get('/accident/create', 'create');
         Route::get('/accident/{id}', 'show');
@@ -125,7 +118,8 @@ Route::middleware('auth')->group(function () {
     });
    
     // **************************************************
-    Route::controller(AssuranceController::class)->group(function () {
+    Route::controller(AssuranceController::class)->group(function () {       
+        Route::get('/assurances/pdf', 'downloadPDF')->name('assurances.pdf');
         Route::get('/assurances', 'index');
         Route::get('/assurance/create', 'create');
         Route::get('/assurance/{id}', 'show');
@@ -138,6 +132,7 @@ Route::middleware('auth')->group(function () {
    
     // **************************************************
     Route::controller(ControleController::class)->group(function () {
+        Route::get('/controles/pdf', 'downloadPDF')->name('controles.pdf');
         Route::get('/controles', 'index');
         Route::get('/controle/create', 'create');
         Route::get('/controle/{id}', 'show');
