@@ -114,6 +114,7 @@
                             <a href="{{url('/history/accidents')}}" class="dropdown-item">Accidents</a>
                         </div>
                     </div> --}}
+                    <a href="{{url('/design')}}" class="nav-item nav-link" target="_blank"><i class="fa fa-pen-nib me-2"></i>Design</a>
                 </div>
             </nav>
         </div>
@@ -130,7 +131,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="{{url('/profile')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4">Profile</a>
-                            <a href="{{url('/history')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4">Historiques</a>
+                            <a href="{{url('/design')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4" target="_blank">Design</a>
+                            <a href="{{url('/history')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4" target="_blank">Historiques</a>
                             <a href="{{url('/')}}" style="color: rgb(151, 151, 151)"  class="dropdown-item ps-4">Paramètres</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
