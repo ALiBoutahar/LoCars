@@ -114,7 +114,6 @@
                             <a href="{{url('/history/accidents')}}" class="dropdown-item">Accidents</a>
                         </div>
                     </div> --}}
-                    <a href="{{url('/design')}}" class="nav-item nav-link" target="_blank"><i class="fa fa-pen-nib me-2"></i>Design</a>
                 </div>
             </nav>
         </div>
